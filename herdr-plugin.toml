@@ -1,0 +1,38 @@
+id = "herdr-skilltri"
+name = "skilltri"
+version = "0.1.0"
+min_herdr_version = "0.9.3"
+description = "Run skilltri (MCP gateway and agent skill manager with per-folder rules) in a herdr split pane, its own tab or a popup."
+platforms = ["macos", "linux"]
+
+[[panes]]
+id = "skilltri"
+title = "skilltri"
+placement = "split"
+command = ["sh", "scripts/run-skilltri.sh"]
+
+[[panes]]
+id = "popup"
+title = "skilltri (popup)"
+placement = "popup"
+width = "80%"
+height = "80%"
+command = ["sh", "scripts/run-skilltri.sh"]
+
+[[actions]]
+id = "open-skilltri"
+title = "Open skilltri"
+description = "Toggle skilltri in a split pane."
+command = ["bash", "scripts/toggle-skilltri.sh", "split"]
+
+[[actions]]
+id = "open-skilltri-tab"
+title = "Open skilltri (tab)"
+description = "Toggle skilltri in its own tab."
+command = ["bash", "scripts/toggle-skilltri.sh", "tab"]
+
+[[actions]]
+id = "open-skilltri-popup"
+title = "Open skilltri (popup)"
+description = "Open skilltri in a popup; it closes when you quit skilltri (q)."
+command = ["sh", "-c", "exec \"${HERDR_BIN_PATH:-herdr}\" plugin pane open --plugin herdr-skilltri --entrypoint popup --focus"]
